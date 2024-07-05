@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row" style="margin-top: 20%;">
+
+    <form class="col-md-6 mx-auto" [formGroup]="LoginForm">
+      <h1>Login Now</h1>
+      <div class="form-floating mb-3 mt-3">
+        <label for="Name">Name<span class="text-danger"> *</span></label>
+        <input type="text" class="form-control" placeholder="UserName " formControlName="UserName">
+
+        <div class="text-danger" *ngIf="UserName?.invalid&&(UserName?.dirty||UserName?.touched)">
+          <div *ngIf="UserName?.errors?.['required']">
+            Name is required
+          </div>
+
+        </div>
+      </div>
+      <div class="form-floating mt-3 mb-3">
+        <label for="pwd">Password<span class="text-danger"> *</span></label>
+        <input type="password" class="form-control" placeholder="Password" formControlName="Password">
+        <div class="text-danger" *ngIf="Password?.invalid && (Password?.touched||Password?.dirty)">
+          <div *ngIf="Password?.errors?.['required']">
+            Password is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 mt-3">
+        <button class="btn btn-primary w-100" type="submit" [disabled]="this.LoginForm.invalid">Login</button>
+      </div>
+      <div class="mb-3 mt-3">
+        Don't have an account? <a class="text-link" routerLink="/register">Register</a>
+      </div>
+    </form>
+
+  </div>
+
+</div>

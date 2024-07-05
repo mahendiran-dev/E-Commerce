@@ -1,0 +1,30 @@
+.card-title,
+.card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100ch;
+}
+
+.card img {
+  width: 200px;
+  height: 200px;
+  margin-left: 20%;
+  margin-bottom: 10px;
+
+}
+
+.card img:hover {
+  transition: 0.3s ease-in-out;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.card {
+  margin: 10px;
+}
+ul>li:hover{
+  cursor: pointer;
+  background-color:#343a40;
+  color:white;
+}
