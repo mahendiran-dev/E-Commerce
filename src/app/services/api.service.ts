@@ -22,7 +22,4 @@ export class ApiService {
     return this.http.get(`${this.url}products/${productId}`);
   }
 
-  searchProducts(searchText: string) {
-    return this.http.get(`${this.url}products?search=${searchText}`)
-  }
 }

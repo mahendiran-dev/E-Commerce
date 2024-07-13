@@ -17,14 +17,7 @@ export class HeaderComponent implements OnInit {
     this.cartService.getCartItemCount().subscribe(count => {
       this.cartItemCount = count;
     });
-    this.FindProduct()
+   
   }
-  FindProduct() {
-    this.apiService.searchProducts(this.searchText).subscribe((data: any) => {
-      this.products = data
-    })
 
-    this.searchText = ''
-
-  }
 }

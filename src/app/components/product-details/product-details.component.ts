@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { CartService } from '../../services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgToastService } from 'ng-angular-popup';
+import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-details',
@@ -12,12 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductDetailsComponent implements OnInit {
   product: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private apiService: ApiService,
-    private cartService: CartService,
-    private router: Router,
-    private toast:ToastrService
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private authService: AuthService,private cartService: CartService,private router: Router,private toast:NgToastService
   ) { }
 
   ngOnInit(): void {
@@ -32,8 +30,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product: any) {
-    this.cartService.addToCart(product);
-    this.toast.success("Check your cart item", " added successfully",)
+    if (this.authService.isAuthenticated()) {
+      this.cartService.addToCart(product);
+      this.toast.success( "Success", "Item added to cart",  4000 );
+    } else {
+      Swal.fire('Add to Cart item Faild', 'You must log in to add items to the cart', 'error');
 
+    }
   }
+
 }

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+
+import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
+import { NgToastService } from 'ng-angular-popup';
+
 
 @Component({
   selector: 'app-register',
@@ -9,20 +13,34 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent {
   RegisterForm: FormGroup
+  Submitted: boolean = false
 
-
-  constructor(private fb: FormBuilder, private toast: ToastrService) {
+  constructor(private fb: FormBuilder, private auth: AuthService, private toast: NgToastService) {
     this.RegisterForm = this.fb.group({
       UserName: ['', Validators.required],
-      Password: ['', [Validators.required, Validators.minLength(6)]],
       Email: ['', [Validators.required, Validators.email]],
+      Password: ['', [Validators.required, Validators.minLength(6)]]
+
 
     })
   }
   OnSubmit() {
-
-    this.toast.success("", "Register Details added successfully")
-    this.RegisterForm.reset()
+    this.Submitted = true;
+    if (this.RegisterForm.invalid) {
+      return
+    }
+    let inputobj = {
+      'UserName': this.RegisterForm.controls['UserName'].value,
+      'Email': this.RegisterForm.controls['Email'].value,
+      'Password': this.RegisterForm.controls['Password'].value
+    }
+    this.auth.Register(inputobj).then(() => {
+      Swal.fire('Success', 'Registration successful', 'success');
+      this.RegisterForm.reset();
+      this.Submitted = false;
+    }).catch((error: any) => {
+      Swal.fire('Error', error.message, 'error');
+    });
   }
 
 

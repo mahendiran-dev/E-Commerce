@@ -17,6 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from './environments/environment';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -32,9 +35,9 @@ import { RegisterComponent } from './components/register/register.component';
     RegisterComponent
   ],
   imports: [
-    BrowserModule,ReactiveFormsModule,HttpClientModule,FormsModule,
+    BrowserModule,ReactiveFormsModule,HttpClientModule,FormsModule,AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule, BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(),NgToastModule // ToastrModule added
 
   ],
   providers: [],

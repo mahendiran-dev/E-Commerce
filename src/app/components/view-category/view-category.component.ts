@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { CartService } from '../../services/cart.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-view-category',
@@ -14,7 +15,7 @@ export class ViewCategoryComponent implements OnInit {
   products: any;
 
   constructor(
-    private apiService: ApiService, private cartService: CartService,private router: Router, private route: ActivatedRoute,private toast:ToastrService ) { }
+    private apiService: ApiService, private cartService: CartService, private router: Router, private route: ActivatedRoute, private toast: NgToastService ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
