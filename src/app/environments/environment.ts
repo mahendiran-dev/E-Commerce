@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://fakestoreapi.com/',
+  apiUrl: 'https://fakestoreapi.com',
   firebase: {
     apiKey: "AIzaSyDW1Uvg_FsgMFquR0h5UpP8Jk1LrdI2xxg",
     authDomain: "e-commerce-e0bce.firebaseapp.com",
